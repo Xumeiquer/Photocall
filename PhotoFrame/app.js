@@ -31,31 +31,28 @@ const winston = require('winston');
 
 /* upload from page required packages */
 const formidable = require('formidable');
-//const readChunk = require('read-chunk');
-//const fileType = require('file-type');
-//const path = require('path');
+
 const fs = require('fs');
 
 const util = require('util');
 
-//const os = require('os')
+
 const app = express();
 const fileStore = sessionFileStore(session);
 const server = http.Server(app);
 
 // merge images
-//const mergeImages = require('merge-images');
-//const Canvas = require('canvas');
+
 var Jimp = require('jimp');
 
 
-//const datetime = require('node-datetime');
+
 var listOfNames = [];
 var photocallTime = -1;
 var updatingPhotocall = false;
 var photocallPhotos = 0;
 
-//var timestampTest = datetime.create().epoch();
+
 
 // Use the EJS template engine
 app.set('view engine', 'ejs');
@@ -75,7 +72,7 @@ for (var key in config.albumList){
   //console.log("config[",key,"]:", config.albumList[key]);
   config.albumList[key].cache = persist.create({
     dir: 'persist-mediaitemcache/',
-    ttl: 1200000,  // 55 minutes // TODO: Changed to 2 minutes
+    ttl: 1200000,  // 20 minutes
   });
   config.albumList[key].cache.init();
 }
@@ -93,7 +90,7 @@ for (var key in config.albumList){
 // the developer documentation. Here it expires after 10 minutes.
 const albumCache = persist.create({
   dir: 'persist-albumcache/',
-  ttl: 30000,  // 10 minutes //TODO: CHanged to 5min
+  ttl: 30000,  //  5min
 });
 albumCache.init();
 
@@ -341,8 +338,8 @@ app.post('/loadFromSearch', async (req, res) => {
   const data = await libraryApiSearch(authToken, parameters);
 
   // Return and cache the result and parameters.
-  const userId = req.session["name"];//req.user.profile.id;
-  //TODO:SETCACHE
+  const userId = req.session["name"];
+
   const albumUserId = "Belino";
 
   returnPhotos(res, userId,albumUserId, data, parameters);
@@ -355,8 +352,7 @@ app.post('/loadFromSearch', async (req, res) => {
 // Returns a list of photos if this was successful, or an error otherwise.
 app.post('/loadFromAlbum', async (req, res) => {
   const albumId = req.body.albumId;
-  //const userId = req.user.profile.id;
-  //TODO:SETCACHE
+ 
   const userId = req.session["name"];
   const albumUserId = "Belino";
   const authToken = await token();
@@ -378,10 +374,9 @@ app.post('/loadFromAlbum', async (req, res) => {
 // Returns all albums owned by the user.
 app.get('/getAlbums', async (req, res) => {
   logger.info('Loading albums');
-  //TODO:CHANGED
-  //const userId = req.user.profile.id;
+  
   const userId = req.session["name"];
-  //res.locals.album = req.body.title;
+
   // Attempt to load the albums from cache if available.
   // Temporarily caching the albums makes the app more responsive.
 
@@ -395,7 +390,7 @@ app.get('/getAlbums', async (req, res) => {
     logger.verbose('Loading albums from API.');
     // Albums not in cache, retrieve the albums from the Library API
     // and return them
-    //TODO:CHANGED
+
     const data = await libraryApiGetAlbums(authToken);//req.user.token);
     if (data.error) {
       // Error occured during the request. Albums could not be loaded.
@@ -422,8 +417,7 @@ app.get('/getAlbums', async (req, res) => {
 
 
 app.get('/getQueue', async (req, res) => {
-  //TODO:CHANGED
-  //const userId = req.user.profile.id;
+
   const userId = req.session["name"];
   const albumUserId = "Belino";
   const authToken= await token();
@@ -509,7 +503,7 @@ app.use("/oauthCallback", function(req, res) {
       });
 });
 
-//TODO: added new page
+
 app.get('/frame', (req, res) => {
     
   if(typeof res.locals.album !=='undefined'){
@@ -548,8 +542,8 @@ app.post('/uploadFile',async(req,res) => {
 
      console.log("File name:", file.name);
      console.log("File path:", file.path);
-    /* console.log("File:", file); 
-*/
+   
+   
      var uploadToken;
     if(file.type.startsWith('video/')){
       console.log("Video type");
@@ -588,7 +582,7 @@ app.post('/uploadFile',async(req,res) => {
 
     // Parse the incoming form fields.
     form.parse(req, function (err, fields, files) {
-      console.log("parse function");
+       //console.log("parse function");
 
         res.status(200).send({});//json(photos);
       });
@@ -629,12 +623,12 @@ app.get('/newFiles', async(req,res) => {
 
       if(time - photocallTime > 10000){  //TODO: Change for const value
         photocallTime = time;
-        console.log("to update:", time - photocallTime);
+       // console.log("to update:", time - photocallTime);
 
         const authToken = await token();
         const data = await libraryApiGetAlbums(authToken, true);
 
-        console.log("data.albums.lenght:", data.albums.length);
+        //console.log("data.albums.lenght:", data.albums.length);
 
         for(var i=0; i< data.albums.length; i++){//var i=0; i<data.length; i++){
           
@@ -687,8 +681,8 @@ async function checkAlbums(){
   }
   else{
     const albumList = await libraryApiGetAlbums(authToken, true);
-    console.log("List of Albums:", albumList);
-    console.log("Existing list:", config.albumList);
+    //console.log("List of Albums:", albumList);
+   // console.log("Existing list:", config.albumList);
 
     //console.log("Albums:", albumList['albums']);
     var list = albumList.albums;
@@ -751,12 +745,12 @@ function renderIfAuthenticated(req, res, page) {
 // Otherwise, the media items are cached, the search parameters are stored
 // and they are returned in the response.
 function returnPhotos(res, userId,albumUserId, data, searchParameter) {
-  console.log("returnPhotos");
+ /* console.log("returnPhotos");
   console.log("userID:", userId);
   console.log("albumUserId:", albumUserId);
   console.log("searchParameters:", searchParameter);
   console.log("data:", data.photos.length);
-
+*/
   if (data.error) {
     returnError(res, data)
   } else {
