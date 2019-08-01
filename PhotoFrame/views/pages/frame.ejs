@@ -1,0 +1,71 @@
+<% include ../partials/head %>
+<section class="sample-content" >
+    <!--<div>
+        <h2>Photocall</h2>
+        <p class="subhead mdl-color-text--grey-700">Benvingut al Photocall de la nostra boda! Ací apareixeran les fotos que vos heu anat fent davant la càmera. Sols disfruteu i descarregueu-vos les que més vos agraden sense desperdiciar paper i tinta (i així, també ho podeu compartir més fàcilment ;-)
+        <br/> Si seleccioneu una foto, la podeu vore en gran</p> -->
+	 <div>
+		<h2 id="title-frame">Les vostres fotos!</h2>
+    	<p class="subhead mdl-color-text--grey-700">Ací estan les fotos que han fet els convidats d'aquesta taula. Tu també pots pujar fotos prement el botó 'Puja Fotos'. Una volta enviades, estaran disponibles en uns minuts... un poc de paciència! Gràcies!
+    		</p>
+	</div> 
+	<div class="button" style="display:flex">
+		<button class="mdl-button mdl-js button mdl-button--raised mdl-button-accent" id="changeAlbum">
+			<i class="material-icons">photo_album</i>
+			<span class="float-btn-label" >Tria un àlbum</span>
+		</button>
+		
+
+		<form id='file-catcher'>
+			<label id='label-file-input' for="file-input" class="mdl-button mdl-js button mdl-button--raised mdl-button-accent">
+				<i class="file-upload"></i><i class="material-icons">camera_alt</i>Puja fotos</label>
+  			<input id='file-input' type='file' style="display: none" multiple/>
+			
+		</form>
+	</div>
+	<!--<form id='file-catcher'>
+  			<input id='file-input' type='file' multiple/>
+			<button class="mdl-button mdl-js button mdl-button--raised mdl-button-accent" id="uploadPhoto">
+				<i class="material-icons">camera_alt</i>
+				<span class="float-btn-label">Puja fotos</span>
+			</button>
+		</form>-->
+
+	
+	<div style="display:none">
+   	 	<p id="preview-description" >
+        	<div class="snippet">
+				<span id="images-count">0</span> fotos del àlbum <span id="images-taula"></span>
+        		 <pre id="images-source">-</pre>
+			</div>
+    	</p>
+	</div>
+	<div id="images-container"></div>
+	<div id="images_empty" style="display:none">
+	 		<img src="/imgs/null-results.png">
+	 		<p>Selecciona un àlbum per a començar</p>
+	</div>
+</section>
+
+<div class="floating-button">
+    
+</div>
+
+<div class="floating-button" >
+	<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="display:none" id="reloadFrame">
+        <i class="material-icons">refresh</i>
+		<span class="float-btn-label" id="fotos-noves">Fotos Noves!</span>
+    </button>
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" id="startSlideshow">
+        <i class="material-icons">fullscreen</i>
+		<span class="float-btn-label">Pantalla completa</span>
+    </button>
+</div>
+
+<% include ../partials/dialogs %>
+
+<% include ../partials/js %>
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+<script src="/js/frame.js"></script>
+
+<% include ../partials/footer %>

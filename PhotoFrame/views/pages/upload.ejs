@@ -1,0 +1,55 @@
+<% include ../partials/head %>
+<section class="sample-content">
+    <!--<div>
+        <h2>Photocall</h2>
+        <p class="subhead mdl-color-text--grey-700">Benvingut al Photocall de la nostra boda! Ací apareixeran les fotos que vos heu anat fent davant la càmera. Sols disfruteu i descarregueu-vos les que més vos agraden sense desperdiciar paper i tinta (i així, també ho podeu compartir més fàcilment ;-)
+        <br/> Si seleccioneu una foto, la podeu vore en gran</p> -->
+	 <div>
+		<h2>Puja les teues foto!</h2>
+    	
+	</div> 
+	
+   <!--  OPT 1
+   <input type="file" onchange="previewFile()"><br>
+    <img src="" height="200px" alt="Image preview..."> -->
+
+<form id='file-catcher'>
+  <input id='file-input' type='file' multiple/>
+  <button type='submit'>
+    Submit
+  </button>
+</form>
+
+<div id='file-list-display'></div>
+</section>
+<!-- OPT 1
+<script>
+   function previewFile(){
+       var preview = document.querySelector('img'); //selects the query named img
+       var file    = document.querySelector('input[type=file]').files[0]; //sames as here
+       var reader  = new FileReader();
+
+       reader.onloadend = function () {
+           preview.src = reader.result;
+       }
+
+       if (file) {
+           reader.readAsDataURL(file); //reads the data as a URL
+       } else {
+           preview.src = "";
+       }
+  }
+
+  previewFile();  //calls the function named previewFile()
+  </script>
+-->
+
+
+
+<% include ../partials/dialogs %>
+
+<% include ../partials/js %>
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+<!--<script src="/js/frame.js"></script>-->
+<script src="/js/upload.js"></script>
+<% include ../partials/footer %>

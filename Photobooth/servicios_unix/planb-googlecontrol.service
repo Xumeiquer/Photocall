@@ -1,0 +1,18 @@
+[Unit]
+Description=Google controler for photocall of Plan B
+After=network.target
+StartLimitIntervalSec=0
+StartLimitAction=reboot
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=PlanBGoogle
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=root
+ExecStart=/usr/bin/python3 /home/pi/project_planb/googlecontrol.py > /home/pi/project_planb/logs_googlecontrol.txt 2>&1
+
+[Install]
+WantedBy=multi-user.target

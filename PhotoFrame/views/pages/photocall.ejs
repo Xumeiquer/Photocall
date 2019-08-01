@@ -1,0 +1,49 @@
+<% include ../partials/head %>
+<section class="sample-content" style="">
+    <div>
+        <h2>Benvingut al photocall de la nostra boda</h2>
+        <p class="subhead mdl-color-text--grey-700" >Ací apareixeran les fotos que vos feu davant la càmera. No hi ha límit, així que aprofiteu i disfruteu!<br/>
+        Si seleccioneu una foto, la voreu en gran i, si us agrada, també la podreu descarregar.<br/>
+        Esperem captar el vostre millor somriure! Gràcies!
+        </p>
+	<!-- <div>
+		<h2>Photo frame preview</h2>
+    	<p class="subhead mdl-color-text--grey-700">Welcome to the photo frame sample. Select an option above to load images from your Google Photos library.
+        	<br />Select a photo or use the "View in frame" button to start your photo frame experience!
+    		</p>
+	</div> -->
+	<div style="display:none">
+   	 	<p id="preview-description" >
+        	<div class="snippet">
+				<span id="images-count">0</span> images loaded from
+        		<pre id="images-source">-</pre>
+			</div>
+    	</p>
+	</div>
+	<div id="images-container"></div>
+	<div id="images_empty" style="display:none">
+	 		<img src="/imgs/null-results.png">
+	 		<p>No results, try searching again</p>
+	</div>
+</section>
+
+
+ 
+<div class="floating-button">
+<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="display:none" id="reloadFrame">
+        <i class="material-icons">refresh</i>
+        <span class="float-btn-label" id="fotos-noves">Fotos Noves!</span>
+    </button>
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" id="startSlideshow">
+        <i class="material-icons">fullscreen</i>
+		<span class="float-btn-label">Pantalla completa</span>
+    </button>
+</div>
+
+<% include ../partials/dialogs %>
+
+<% include ../partials/js %>
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+<script src="/js/photocall.js"></script>
+
+<% include ../partials/footer %>
