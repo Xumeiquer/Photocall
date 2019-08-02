@@ -18,6 +18,6 @@ Todavía hay algunos cambios pendientes de actualizar o errores que resolver:
 
 - [Cambio] Actualizar la función de createAlbum para que se adapte al nuevo formato de almacenar albumes definido en config.js
 - [Error] Al cargar la página, carga sin ningún problema. Sin embargo, al refrescar automáticamente en busca de nuevas fotos (llamada a /newFiles), da un error que no se producía en el momento de implementación y puesta en producción.
--- Se encuentra en la linea 624 en la siguiente instrucción
-        config.albumList[data.albums[i].id].existing = data.albums[i].mediaItemsCount;
+    - Se encuentra en la linea 624 en la siguiente instrucción
+    >    config.albumList[data.albums[i].id].existing = data.albums[i].mediaItemsCount;
  
